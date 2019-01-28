@@ -1,0 +1,422 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card should render 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <MainCard
+    card={
+      Object {
+        "english": "Convenient",
+        "examples": Array [
+          Object {
+            "JLPTLevel": 3,
+            "englishWord": "Surface mail (ship)",
+            "kanaWord": "ふなびん ",
+            "kanjiWord": "船便",
+          },
+          Object {
+            "JLPTLevel": 2,
+            "englishWord": "Express home delivery",
+            "kanaWord": "たくはいびん ",
+            "kanjiWord": "宅配便",
+          },
+          Object {
+            "JLPTLevel": 2,
+            "englishWord": "Mail, postal service",
+            "kanaWord": "ゆうびん ",
+            "kanjiWord": "郵便",
+          },
+          Object {
+            "JLPTLevel": 2,
+            "englishWord": "Post office",
+            "kanaWord": "ゆうびんきょく ",
+            "kanjiWord": "郵便局",
+          },
+        ],
+        "kana": "ベン",
+        "kanji": "便",
+        "kunYomi": "たよ(り)",
+        "onYomi": "ベン, ビン",
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <h2>
+          便
+        </h2>,
+        Array [
+          <div>
+             
+            船便
+             (
+            ふなびん 
+            ) : 
+            Surface mail (ship)
+              
+          </div>,
+          <div>
+             
+            宅配便
+             (
+            たくはいびん 
+            ) : 
+            Express home delivery
+              
+          </div>,
+          <div>
+             
+            郵便
+             (
+            ゆうびん 
+            ) : 
+            Mail, postal service
+              
+          </div>,
+          <div>
+             
+            郵便局
+             (
+            ゆうびんきょく 
+            ) : 
+            Post office
+              
+          </div>,
+        ],
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "便",
+        },
+        "ref": null,
+        "rendered": "便",
+        "type": "h2",
+      },
+      Object {
+        "instance": null,
+        "key": "0-Surface mail (ship)",
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            " ",
+            "船便",
+            " (",
+            "ふなびん ",
+            ") : ",
+            "Surface mail (ship)",
+            "  ",
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          " ",
+          "船便",
+          " (",
+          "ふなびん ",
+          ") : ",
+          "Surface mail (ship)",
+          "  ",
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": "1-Express home delivery",
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            " ",
+            "宅配便",
+            " (",
+            "たくはいびん ",
+            ") : ",
+            "Express home delivery",
+            "  ",
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          " ",
+          "宅配便",
+          " (",
+          "たくはいびん ",
+          ") : ",
+          "Express home delivery",
+          "  ",
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": "2-Mail, postal service",
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            " ",
+            "郵便",
+            " (",
+            "ゆうびん ",
+            ") : ",
+            "Mail, postal service",
+            "  ",
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          " ",
+          "郵便",
+          " (",
+          "ゆうびん ",
+          ") : ",
+          "Mail, postal service",
+          "  ",
+        ],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": "3-Post office",
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            " ",
+            "郵便局",
+            " (",
+            "ゆうびんきょく ",
+            ") : ",
+            "Post office",
+            "  ",
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          " ",
+          "郵便局",
+          " (",
+          "ゆうびんきょく ",
+          ") : ",
+          "Post office",
+          "  ",
+        ],
+        "type": "div",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <h2>
+            便
+          </h2>,
+          Array [
+            <div>
+               
+              船便
+               (
+              ふなびん 
+              ) : 
+              Surface mail (ship)
+                
+            </div>,
+            <div>
+               
+              宅配便
+               (
+              たくはいびん 
+              ) : 
+              Express home delivery
+                
+            </div>,
+            <div>
+               
+              郵便
+               (
+              ゆうびん 
+              ) : 
+              Mail, postal service
+                
+            </div>,
+            <div>
+               
+              郵便局
+               (
+              ゆうびんきょく 
+              ) : 
+              Post office
+                
+            </div>,
+          ],
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "便",
+          },
+          "ref": null,
+          "rendered": "便",
+          "type": "h2",
+        },
+        Object {
+          "instance": null,
+          "key": "0-Surface mail (ship)",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              " ",
+              "船便",
+              " (",
+              "ふなびん ",
+              ") : ",
+              "Surface mail (ship)",
+              "  ",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            " ",
+            "船便",
+            " (",
+            "ふなびん ",
+            ") : ",
+            "Surface mail (ship)",
+            "  ",
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": "1-Express home delivery",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              " ",
+              "宅配便",
+              " (",
+              "たくはいびん ",
+              ") : ",
+              "Express home delivery",
+              "  ",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            " ",
+            "宅配便",
+            " (",
+            "たくはいびん ",
+            ") : ",
+            "Express home delivery",
+            "  ",
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": "2-Mail, postal service",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              " ",
+              "郵便",
+              " (",
+              "ゆうびん ",
+              ") : ",
+              "Mail, postal service",
+              "  ",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            " ",
+            "郵便",
+            " (",
+            "ゆうびん ",
+            ") : ",
+            "Mail, postal service",
+            "  ",
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": "3-Post office",
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              " ",
+              "郵便局",
+              " (",
+              "ゆうびんきょく ",
+              ") : ",
+              "Post office",
+              "  ",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            " ",
+            "郵便局",
+            " (",
+            "ゆうびんきょく ",
+            ") : ",
+            "Post office",
+            "  ",
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;

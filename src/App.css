@@ -30,3 +30,7 @@
     transform: rotate(360deg);
   }
 }
+
+.mini-card:focus {
+  color: rgb(5, 141, 0)
+}
