@@ -2,17 +2,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { getRandomItems } from '../func';
 
-export default class MainCard extends Component {
-    static propTypes = {
-        card: PropTypes.object
-    }
-
-
-    render() {
-        const { card } = this.props
+export default function MainCard(props) {
+        const { card } = props
         return (
             <div>
-                <h2 onClick={this.props.onClick}>{card.kanji} : {card.english}</h2>
+                <h2 onClick={props.onClick}>{card.kanji} : {card.english}</h2>
                 {
                     card.examples 
                         && 
@@ -20,5 +14,5 @@ export default class MainCard extends Component {
                 }
             </div>
         )
-    }
 }
+

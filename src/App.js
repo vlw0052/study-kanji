@@ -38,7 +38,6 @@ class App extends Component {
     }else {
       const num = +event.key
       if(!isNaN(num) && num > 0){
-
         this.onCardChosen(answerCards[num - 1])
       }
 
