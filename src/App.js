@@ -1,4 +1,4 @@
-import React, { Component, useReducer, useEffect, useContext } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import './App.css';
 import data from './cards/data.json'
 import MainCard from './cards/MainCard';

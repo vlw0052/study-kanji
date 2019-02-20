@@ -1,14 +1,12 @@
-import React, { useContext } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 import { getRandomItems } from '../func';
-import { CardContext } from '../deckReducer'
 
 export default function MainCard({ currentCard, isAnswered, isCorrectAnswer, onClick }) {
         if(!currentCard) return 'No Card'
         return (
             <div className={`main-card card col m6 s12 ${isAnswered && isCorrectAnswer ? 'correct':''} ${isAnswered ? 'answered':''}`}>
-                <a href={`https://jisho.org/search/%23kanji%20${currentCard ? currentCard.kanji : '' }`} target='_blank'>
-                <img className="jisho-link" src={'/jisho.png'} title="Link to jisho" >
+                <a href={`https://jisho.org/search/%23kanji%20${currentCard ? currentCard.kanji : '' }`} target='_blank' rel="noopener noreferrer">
+                <img className="jisho-link" src={'/jisho.png'} alt="Link to jisho" >
                 </img>
                 </a>
                 <h2>{currentCard.kanji} {isAnswered ? ':' + currentCard.english:''}</h2>

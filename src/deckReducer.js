@@ -60,6 +60,7 @@ export function deckReducer(state, action) {
                 ...state,
                 showScore: false
             }
+        default: 
+            return state
     }
-    return state
 }
