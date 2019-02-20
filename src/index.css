@@ -12,3 +12,40 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.selection {
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #037A2A;
+  
+}
+.selection h3 {
+  text-align: center;
+}
+.levels {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+}
+.level{
+  display: grid;
+  align-items: center;
+  text-align: center;
+  font-size: 2rem;
+  background: #024719;
+  width: 100%;
+  height: 23vh;
+  transition: .23s ease-in-out;
+  cursor: pointer;
+}
+.level:hover {
+  background: #05C645;
+}
+/* ON HOVER show all the groups inside that level */

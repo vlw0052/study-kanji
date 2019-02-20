@@ -8,40 +8,40 @@ export const createNewStartDeck = (deck) => ({
     group: deck.group,
     correct: [],
     inCorrect: [],
-    unAnswered: [ ...deck.matchCards ]
+    unAnswered: [...deck.matchCards]
 })
 export const areCardsEqual = (card1, card2) => {
-    if(!card1 || !card2)
+    if (!card1 || !card2)
         return false
     return card1.english === card2.english
 }
 
 export const chooseRandomCard = (cards) => {
-    if(cards.length === 1) {
+    if (cards.length === 1) {
         return cards[0]
     }
     const randIndex = Math.floor(Math.random() * 1000) % (cards.length - 1)
     return cards[randIndex]
 }
 
-export const getRandomItems = (items, { numberOfItems = 9, fnException = (item) => true } = { }) => {
+export const getRandomItems = (items, { numberOfItems = 9, fnException = (item) => true } = {}) => {
     let randomItems = []
     let chosenIndexes = []
     let triedIndexes = []
-    if(items.length <= numberOfItems)
+    if (items.length <= numberOfItems)
         return items
-    for(let i = 0; i < numberOfItems; i++){
+    for (let i = 0; i < numberOfItems; i++) {
         let randIndex = Math.floor(Math.random() * 1000) % (items.length - 1)
-        if(!chosenIndexes.includes(randIndex) && fnException(items[randIndex])){
-            chosenIndexes.push( randIndex )
-            randomItems.push( items[randIndex] )
-        }else {
+        if (!chosenIndexes.includes(randIndex) && fnException(items[randIndex])) {
+            chosenIndexes.push(randIndex)
+            randomItems.push(items[randIndex])
+        } else {
             i--
         }
-        if(triedIndexes.includes(randIndex)){
+        if (triedIndexes.includes(randIndex)) {
             triedIndexes.push(randIndex)
         }
-        if(triedIndexes.length === items.length)
+        if (triedIndexes.length === items.length)
             break
     }
     return randomItems
@@ -50,30 +50,43 @@ export const getRandomItems = (items, { numberOfItems = 9, fnException = (item) 
 export const moveCardTo = (isCorrect = true) => (deck, card) => {
     let correct
     let inCorrect
-    if(isCorrect){
-        correct = [ ...deck.correct, card ]
-        inCorrect = [ ...deck.inCorrect.filter(c => c.kanji !== card.kanji) ]
+    if (isCorrect) {
+        correct = [...deck.correct, card]
+        inCorrect = [...deck.inCorrect.filter(c => c.kanji !== card.kanji)]
     } else {
-        correct = [ ...deck.correct ]
-        inCorrect = [ ...deck.inCorrect.filter(c => c.kanji !== card.kanji), card]
+        correct = [...deck.correct]
+        inCorrect = [...deck.inCorrect.filter(c => c.kanji !== card.kanji), card]
     }
     const unAnswered = deck.unAnswered.filter(c => c.kanji !== card.kanji)
     return {
         ...deck,
-        correct, 
+        correct,
         inCorrect,
         unAnswered
     }
-}   
+}
 
 export const getPercentage = (numerator, denominator) => {
-    if(denominator === numerator)
-        return 100
-    if(denominator <= 0 || numerator < 0){
+    if (denominator <= 0 || numerator <= 0) {
         return 0
     }
+    if (denominator === numerator)
+        return 100
     return ((numerator / denominator) * 100).toFixed(2)
 }
+
+export const getNewAnswerCards = (deck, currentCard) => {
+    return shuffle([
+        ...getRandomItems(
+            [...deck.unAnswered, ...deck.inCorrect, ...deck.correct],
+            {
+                fnException: (card) => { return !areCardsEqual(card, currentCard) },
+                numberOfItems: 8
+            }),
+        currentCard
+    ])
+}
+
 export function shuffle(a) {
     for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
