@@ -1,10 +1,9 @@
 .app-container {
   display: grid;
   grid-template-rows: 45px 1fr;
-
 }
 
-.next-button{
+.next-button {
   display: grid;
   position: absolute;
   bottom: 0;
@@ -13,6 +12,7 @@
   height: 50px;
   background: white;
 }
+
 .next-button i {
   margin: auto;
   color: green;
@@ -23,14 +23,17 @@
   max-height: 50vh;
   height: 50%;
 }
-.main-card:not(.answered) h2{
+
+.main-card:not(.answered) h2 {
   text-align: center;
   font-size: 10rem;
 }
+
 .row .col .mini-card {
-  height: 75px;
+  min-height: 75px;
   padding: 10px;
 }
+
 .mini-card:focus {
   color: rgb(5, 141, 0)
 }
@@ -46,10 +49,12 @@
   display: inline-block;
   width: 32%;
 }
-.progress-section > div {
+
+.progress-section>div {
   text-align: center;
   margin: 5px;
 }
+
 .box {
   text-align: right;
   display: inline-block;
@@ -59,6 +64,7 @@
   margin-right: 3px;
   border-radius: 100%;
 }
+
 .correct {
   border: solid 2px lightgreen
 }
