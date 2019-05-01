@@ -30,7 +30,7 @@ export const MiniCards = ({
   return (
     <div className={'cards-group col m6 s12'}>
       {answerCards.map((card, i) => (
-        <div className='col s4 '>
+        <div className='col s4'>
           <div
             tabIndex={0}
             key={card.english}
