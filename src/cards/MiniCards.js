@@ -28,9 +28,9 @@ export const MiniCards = ({
     }
   };
   return (
-    <div className={'cards-group col m6 s12'}>
+    <div className={'cards-group'}>
       {answerCards.map((card, i) => (
-        <div className='col s4'>
+        <div className=''>
           <div
             tabIndex={0}
             key={card.english}

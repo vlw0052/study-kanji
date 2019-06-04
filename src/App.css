@@ -18,10 +18,15 @@
   color: green;
 }
 
+.testing-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
 .main-card.card {
   position: relative;
   max-height: 50vh;
-  height: 50%;
 }
 
 .main-card:not(.answered) h2 {
@@ -29,7 +34,7 @@
   font-size: 10rem;
 }
 
-.row .col .mini-card {
+.mini-card {
   min-height: 75px;
   padding: 10px;
 }
