@@ -3,12 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.6",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "react-scripts": "^2.1.5"
+    "react-scripts": "^2.1.5",
+    "socket.io-client": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:p": "set PORT=3006 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

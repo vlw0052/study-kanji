@@ -8,9 +8,13 @@ import MiniCards from './cards/MiniCards';
 import { ProgressBar } from './ProgressBar';
 import { Progress } from './Progress';
 import { deckReducer, initialState } from './deckReducer';
+import StatusConnectionBar from './StatusConnectionBar';
+import * as Events from './Events';
 
 export const App = () => {
   let [state, dispatch] = useReducer(deckReducer, initialState);
+  let [socket, setSocket] = useState(null);
+  let [connectionStatus, setStatus] = useState(false);
 
   useEffect(() => {
     const startDeck = createNewStartDeck(data);
@@ -19,6 +23,27 @@ export const App = () => {
     dispatch({ type: 'SET_CURRENT_CARD', payload: currentCard });
     dispatch({ type: 'SET_ANSWER_CARDS', payload: getNewAnswerCards(startDeck, currentCard) });
   }, []);
+
+  useEffect(() => {
+    connectToSocket();
+  }, []);
+
+  useEffect(() => {
+    if (socket) {
+      socket.emit(Events.CURRENT_KANJI, { currentCard, answerCards });
+    }
+  }, [socket, state.currentCard]);
+  const connectToSocket = () => {
+    const socketUrl = process.env.REACT_APP_SOCKET;
+    const socket = io(socketUrl);
+    setSocket(socket);
+    socket.on('connect', () => {
+      setStatus(true);
+    });
+    socket.on('disconnect', () => {
+      setStatus(false);
+    });
+  };
 
   const nextCard = () => {
     const { isCorrectAnswer, deck, currentCard, isAnswered } = state;
@@ -74,6 +99,7 @@ export const App = () => {
           </main>
         )}
       </div>
+      <StatusConnectionBar status={connectionStatus} />
     </div>
   );
 };

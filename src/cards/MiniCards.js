@@ -1,12 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-export const MiniCards = ({
-  answerCards,
-  isAnswered,
-  onCardChosen,
-  nextCard
-}) => {
+export const MiniCards = ({ answerCards, isAnswered, onCardChosen, nextCard }) => {
   const onNumberPress = () => {};
   useEffect(() => {
     document.addEventListener('keypress', onNumberPress);
@@ -30,7 +25,7 @@ export const MiniCards = ({
   return (
     <div className={'cards-group'}>
       {answerCards.map((card, i) => (
-        <div className=''>
+        <div key={card.english}>
           <div
             tabIndex={0}
             key={card.english}

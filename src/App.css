@@ -73,3 +73,28 @@
 .correct {
   border: solid 2px lightgreen
 }
+
+@keyframes fade-down {
+  to {
+    height: 0;
+  }
+}
+
+.status-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 15px;
+  background: #729FE8;
+  animation: fade-down 2s;
+  animation-delay: 5s;
+  animation-fill-mode: forwards;
+}
+
+.status-bar.connected {
+  background: rgb(5, 141, 0);
+}
+
+.status-bar.disconnected {
+  background: rgb(141, 16, 0);
+}
