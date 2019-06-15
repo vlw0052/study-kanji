@@ -1,24 +1,28 @@
-import React, { useState, useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import './App.css';
-import io from 'socket.io-client';
-import data from './cards/data.json';
 import MainCard from './cards/MainCard';
-import { createNewStartDeck, chooseRandomCard, getPercentage, moveCardTo, getNewAnswerCards } from './func';
+import { createNewStartDeck, chooseRandomCard, getPercentage, moveCardTo, getNewAnswerCards, fetchDeckSection } from './func';
 import MiniCards from './cards/MiniCards';
 import { ProgressBar } from './ProgressBar';
 import { Progress } from './Progress';
 import { deckReducer, initialState } from './deckReducer';
+import DeckSelection from './DeckSelection/DeckSelection';
 
 export const App = () => {
   let [state, dispatch] = useReducer(deckReducer, initialState);
 
   useEffect(() => {
-    const startDeck = createNewStartDeck(data);
-    const currentCard = chooseRandomCard(data.matchCards);
-    dispatch({ type: 'SET_DECK', payload: startDeck });
-    dispatch({ type: 'SET_CURRENT_CARD', payload: currentCard });
-    dispatch({ type: 'SET_ANSWER_CARDS', payload: getNewAnswerCards(startDeck, currentCard) });
-  }, []);
+    if (!state.section.deckData && !state.section.number) {
+      return;
+    }
+    fetchDeckSection(state.section.deckData, state.section.number).then(data => {
+      const startDeck = createNewStartDeck(data);
+      const currentCard = chooseRandomCard(data.matchCards);
+      dispatch({ type: 'SET_DECK', payload: startDeck });
+      dispatch({ type: 'SET_CURRENT_CARD', payload: currentCard });
+      dispatch({ type: 'SET_ANSWER_CARDS', payload: getNewAnswerCards(startDeck, currentCard) });
+    });
+  }, [state.section]);
 
   const nextCard = () => {
     const { isCorrectAnswer, deck, currentCard, isAnswered } = state;
@@ -56,6 +60,8 @@ export const App = () => {
   };
 
   const { currentCard, score, isAnswered, isCorrectAnswer, deck, answerCards } = state;
+  console.log(deck.JLPTLevel);
+  // if (!deck.JLPTLevel) return <DeckSelection />;
   return (
     <div className='app-container'>
       <div className='progress-header'>

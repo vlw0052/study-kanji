@@ -1,4 +1,5 @@
-import data from './cards/data.json';
+const requireDeckFile = file => require(`./data/decks/${file}`);
+
 /**
  * Creates a new start deck
  * @param {object} deck
@@ -83,10 +84,22 @@ export const getNewAnswerCards = (deck, currentCard) => {
   ]);
 };
 
-export function fetchSectionDeck(section) {
-  return Promise.resolve(data);
+export function fetchDeckSection(deckData, group) {
+  const fileName = resolveDeckFileName(deckData, group);
+  return fetch('./decks/' + fileName, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }).then(res => {
+    console.log(res);
+    return res.json();
+  });
 }
 
+export function resolveDeckFileName(deckData, group) {
+  return `${deckData.label}-${group}.json`;
+}
 export function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));

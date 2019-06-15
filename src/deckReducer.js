@@ -1,6 +1,9 @@
 import React from 'react';
 export const initialState = {
-  section: null,
+  section: {
+    deckData: null,
+    number: null
+  },
   currentCard: null,
   deck: {
     JLPTLevel: null,
@@ -26,7 +29,10 @@ export function deckReducer(state, action) {
     case 'CHANGE_SECTION':
       return {
         ...state,
-        section: action.payload
+        section: {
+          deckData: action.payload.deckData,
+          number: action.payload.sectionNumber
+        }
       };
     case 'SET_DECK':
       return {

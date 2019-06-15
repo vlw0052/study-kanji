@@ -14,7 +14,7 @@ export default function MainCard({ currentCard, isAnswered, isCorrectAnswer, onC
       {isAnswered &&
         currentCard.examples &&
         getRandomItems(currentCard.examples, { numberOfItems: 4 }).map((ex, i) => (
-          <div key={`${i}-${ex.englishWord}`}>
+          <div key={`${i}-${ex.englishWord}`} className='example'>
             {' '}
             {ex.kanjiWord} ({ex.kanaWord}) : {ex.englishWord}{' '}
           </div>

@@ -10,7 +10,7 @@
   right: 0;
   width: 50px;
   height: 50px;
-  background: white;
+  background: transparent;
 }
 
 .next-button i {
@@ -20,13 +20,27 @@
 
 .testing-section {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 30px;
 }
 
 .main-card.card {
-  position: relative;
-  max-height: 50vh;
+  padding: 15px 15px 45px;
+  position: fixed;
+  z-index: 10;
+  right: 0;
+  max-width: 75%;
+}
+
+@media (min-width: 426px) {
+  .testing-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .main-card.card {
+    width: auto;
+    position: relative;
+    max-height: 50vh;
+  }
 }
 
 .main-card:not(.answered) h2 {

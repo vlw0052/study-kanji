@@ -1,37 +1,44 @@
 {
   "decks": {
     "JLPT7": {
-      "label": "Hiragana",
+      "name": "Hiragana",
+      "label": "JLPT7",
       "numberOfSections": 2,
       "defaultDisplay": "kana"
     },
     "JLPT6": {
-      "label": "Katakana",
+      "name": "Katakana",
+      "label": "JLPT6",
       "numberOfSections": 2,
       "defaultDisplay": "kana"
     },
 
     "JLPT5": {
+      "name": "JLPT5",
       "label": "JLPT5",
       "numberOfSections": 2,
       "defaultDisplay": "kanji"
     },
     "JLPT4": {
+      "name": "JLPT4",
       "label": "JLPT4",
       "numberOfSections": 4,
       "defaultDisplay": "kanji"
     },
     "JLPT3": {
+      "name": "JLPT3",
       "label": "JLPT3",
       "numberOfSections": 8,
       "defaultDisplay": "kanji"
     },
     "JLPT2": {
+      "name": "JLPT2",
       "label": "JLPT2",
       "numberOfSections": 7,
       "defaultDisplay": "kanji"
     },
     "JLPT1": {
+      "name": "JLPT1",
       "label": "JLPT1",
       "numberOfSections": 20,
       "defaultDisplay": "kanji"

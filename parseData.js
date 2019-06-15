@@ -56,7 +56,7 @@ const pipe = (...fns) => d =>
     .reverse()
     .splice(1)
     .reduce((cum, fn) => fn(cum), fns[fns.length - 1](d));
-
+/*
 loopThroughDecks().then(decks => {
   pipe(
     saveDecks,
@@ -64,17 +64,15 @@ loopThroughDecks().then(decks => {
     filterDecks
   )(decks);
 });
-
+*/
 function filterDecks(decks) {
   return decks.filter(deck => !!deck.MatchCards.length);
 }
 function saveDecks(decks) {
   return decks.map(deck => {
-    fs.appendFile(
-      `decks/JLPT${deck.JLPTLevel}-${deck.group}.json`,
-      JSON.stringify(deck),
-      (err, d) => {}
-    );
+    console.log(deck);
+    console.log('*****************DONE');
+    fs.writeFile(`decks/JLPT${deck.JLPTLevel}-${deck.group}.json`, JSON.stringify(deck), (err, d) => {});
     return `JLPT${deck.JLPTLevel}-${deck.group}`;
   });
 }
