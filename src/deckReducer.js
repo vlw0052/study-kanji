@@ -16,7 +16,8 @@ export const initialState = {
   isAnswered: false,
   isCorrectAnswer: true,
   answerCards: [],
-  showScore: false
+  showScore: false,
+  updatingDeck: false
 };
 
 export const CardContext = React.createContext(initialState);
@@ -31,7 +32,8 @@ export function deckReducer(state, action) {
     case 'SET_DECK':
       return {
         ...state,
-        deck: action.payload
+        deck: action.payload,
+        updatingDeck: false
       };
     case 'SET_CURRENT_CARD':
       return {
@@ -65,6 +67,11 @@ export function deckReducer(state, action) {
       return {
         ...state,
         showScore: false
+      };
+    case 'UPDATE_DECK':
+      return {
+        ...state,
+        updatingDeck: true
       };
     default:
       return state;

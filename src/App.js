@@ -1,13 +1,13 @@
-import React, { useState, useReducer, useEffect } from 'react';
+import React, { useState, useReducer, useEffect, useCallback } from 'react';
 import './App.css';
-import io from 'socket.io-client';
 import data from './cards/data.json';
 import MainCard from './cards/MainCard';
-import { createNewStartDeck, chooseRandomCard, getPercentage, moveCardTo, getNewAnswerCards } from './func';
 import MiniCards from './cards/MiniCards';
+import SelectionScreen from './SelectionScreen';
 import { ProgressBar } from './ProgressBar';
 import { Progress } from './Progress';
 import { deckReducer, initialState } from './deckReducer';
+import { createNewStartDeck, chooseRandomCard, getPercentage, moveCardTo, getNewAnswerCards } from './func';
 
 export const App = () => {
   let [state, dispatch] = useReducer(deckReducer, initialState);
@@ -54,8 +54,16 @@ export const App = () => {
       updateScore(false);
     }
   };
+  const selectDeck = (level, group) => {
+    debugger;
+  };
 
-  const { currentCard, score, isAnswered, isCorrectAnswer, deck, answerCards } = state;
+  const updateDeck = useCallback(() => {
+    dispatch({ type: 'UPDATE_DECK' });
+  });
+  const { currentCard, score, isAnswered, isCorrectAnswer, deck, answerCards, updatingDeck } = state;
+
+  if (updatingDeck) return <SelectionScreen selectDeck={selectDeck} />;
   return (
     <div className='app-container'>
       <div className='progress-header'>
@@ -64,16 +72,18 @@ export const App = () => {
         <Progress color={'yellow'} text='Remaining' number={deck.unAnswered.length} />
         <ProgressBar numerator={score.correct} denominator={score.total} />
       </div>
-      <div className='container'>
-        {state.showScore ? (
-          <h1>Your score {getPercentage(score.correct, score.total)} </h1>
-        ) : (
-          <main className='testing-section'>
-            <MainCard currentCard={currentCard} onClick={nextCard} isAnswered={isAnswered} isCorrectAnswer={isCorrectAnswer} />
-            <MiniCards onCardChosen={onCardChosen} answerCards={answerCards} isAnswered={isAnswered} nextCard={nextCard} />
-          </main>
-        )}
-      </div>
+
+      {state.showScore ? (
+        <h1>Your score {getPercentage(score.correct, score.total)} </h1>
+      ) : (
+        <main className='testing-section'>
+          <MainCard currentCard={currentCard} onClick={nextCard} isAnswered={isAnswered} isCorrectAnswer={isCorrectAnswer} />
+          <MiniCards onCardChosen={onCardChosen} answerCards={answerCards} isAnswered={isAnswered} nextCard={nextCard} />
+        </main>
+      )}
+      <button className='update-deck' onClick={updateDeck}>
+        Update Deck
+      </button>
     </div>
   );
 };

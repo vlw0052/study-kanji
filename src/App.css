@@ -1,6 +1,6 @@
 .app-container {
   display: grid;
-  grid-template-rows: 45px 1fr;
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .next-button {
@@ -13,6 +13,10 @@
   background: white;
 }
 
+.progress-header {
+  grid-column: span 6;
+}
+
 .next-button i {
   margin: auto;
   color: green;
@@ -20,6 +24,7 @@
 
 .testing-section {
   display: grid;
+  grid-column: span 6;
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
 }
@@ -72,4 +77,15 @@
 
 .correct {
   border: solid 2px lightgreen
+}
+
+.update-deck {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background: white;
+  padding: 20px 0;
+  border-top: solid 2px rgba(0, 0, 0, 0.6);
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.4);
 }

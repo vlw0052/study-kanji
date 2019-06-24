@@ -1,34 +1,44 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { decks } from './decks.json';
 
-const levels = ['N5', 'N4', 'N3', 'N2', 'N1']
+const levels = ['N5', 'N4', 'N3', 'N2', 'N1'];
 export default class SelectionScreen extends Component {
-    constructor(){
-        super()
-        this.state = {
-            selectedGroup: null
-        }
-        
-    }
-    static propTypes = {
-        onLevelSelection: PropTypes.func,
-    }
+  constructor() {
+    super();
+    this.state = {
+      selectedLevel: null
+    };
+  }
+  static propTypes = {
+    onLevelSelection: PropTypes.func
+  };
 
-    render() {
-        return (
-            <div className="selection">
-                <h3>Select Your Level</h3>
-                <div className="levels">
-                {
-                    levels.map(l => (
-                        <div title={`JLPT ${l}`} onClick={ ()=>this.setState({ selectedGroup: l }) } className="level">
-                            {l}
-                        </div>
-                        )
-                    )
-                }
+  selectLevel = l => _ => {
+    this.setState({ selectedLevel: l });
+  };
+  back = _ => {
+    this.setState({ selectedLevel: null });
+  };
+  render() {
+    return (
+      <div className='selection'>
+        <h3>{this.state.selectedLevel ? 'Select A Group' : 'Select Your Level'}</h3>
+        <div className='levels'>
+          {this.state.selectedLevel ? <button onClick={this.back}>Back</button> : ''}
+          {!this.state.selectedLevel
+            ? Object.keys(decks).map(l => (
+                <div title={`${decks[l].label}`} onClick={this.selectLevel(l)} className='level'>
+                  {decks[l].label}
                 </div>
-            </div>
-        )
-    }
+              ))
+            : Array.from(new Array(decks[this.state.selectedLevel].numberOfSections)).map((_, l) => (
+                <div title={`${l + 1}`} onClick={() => this.props.selectDeck(this.state.selectedLevel, l + 1)} className='level'>
+                  {l + 1}
+                </div>
+              ))}
+        </div>
+      </div>
+    );
+  }
 }
