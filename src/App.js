@@ -7,18 +7,10 @@ import SelectionScreen from './SelectionScreen';
 import { ProgressBar } from './ProgressBar';
 import { Progress } from './Progress';
 import { deckReducer, initialState } from './deckReducer';
-import { createNewStartDeck, chooseRandomCard, getPercentage, moveCardTo, getNewAnswerCards } from './func';
+import { createNewStartDeck, chooseRandomCard, getPercentage, moveCardTo, getNewAnswerCards, compareBy } from './func';
 
 export const App = () => {
   let [state, dispatch] = useReducer(deckReducer, initialState);
-
-  useEffect(() => {
-    const startDeck = createNewStartDeck(data);
-    const currentCard = chooseRandomCard(data.matchCards);
-    dispatch({ type: 'SET_DECK', payload: startDeck });
-    dispatch({ type: 'SET_CURRENT_CARD', payload: currentCard });
-    dispatch({ type: 'SET_ANSWER_CARDS', payload: getNewAnswerCards(startDeck, currentCard) });
-  }, []);
 
   const nextCard = () => {
     const { isCorrectAnswer, deck, currentCard, isAnswered } = state;
@@ -46,7 +38,8 @@ export const App = () => {
   const onCardChosen = card => {
     const { currentCard, isAnswered } = state;
     if (isAnswered) return;
-    if (currentCard.kanji === card.kanji) {
+    const compareKey = compareBy(card);
+    if (currentCard[compareKey] === card[compareKey]) {
       dispatch({ type: 'SET_ANSWERED_CORRECT' });
       updateScore(true);
     } else {
@@ -55,9 +48,19 @@ export const App = () => {
     }
   };
   const selectDeck = (level, group) => {
-    debugger;
+    fetch(`/decks/${level}-${group}.json`)
+      .then(data => data.json())
+      .then(data => {
+        setDeck(data);
+      });
   };
-
+  const setDeck = data => {
+    const startDeck = createNewStartDeck(data);
+    const currentCard = chooseRandomCard(data.matchCards);
+    dispatch({ type: 'SET_DECK', payload: startDeck });
+    dispatch({ type: 'SET_CURRENT_CARD', payload: currentCard });
+    dispatch({ type: 'SET_ANSWER_CARDS', payload: getNewAnswerCards(startDeck, currentCard) });
+  };
   const updateDeck = useCallback(() => {
     dispatch({ type: 'UPDATE_DECK' });
   });

@@ -44,17 +44,20 @@ export const getRandomItems = (items, { numberOfItems = 9, fnException = item =>
   return randomItems;
 };
 
+export const compareBy = card => (card.kanji.trim() ? 'kanji' : 'kana');
+
 export const moveCardTo = (isCorrect = true) => (deck, card) => {
   let correct;
   let inCorrect;
+  const compareKey = compareBy(card);
   if (isCorrect) {
     correct = [...deck.correct, card];
-    inCorrect = [...deck.inCorrect.filter(c => c.kanji !== card.kanji)];
+    inCorrect = [...deck.inCorrect.filter(c => c[compareKey] !== card[compareKey])];
   } else {
     correct = [...deck.correct];
-    inCorrect = [...deck.inCorrect.filter(c => c.kanji !== card.kanji), card];
+    inCorrect = [...deck.inCorrect.filter(c => c[compareKey] !== card[compareKey]), card];
   }
-  const unAnswered = deck.unAnswered.filter(c => c.kanji !== card.kanji);
+  const unAnswered = deck.unAnswered.filter(c => c[compareKey] !== card[compareKey]);
   return {
     ...deck,
     correct,

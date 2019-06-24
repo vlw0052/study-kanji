@@ -27,6 +27,7 @@
   grid-column: span 6;
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
+  padding-bottom: 55px;
 }
 
 .main-card.card {

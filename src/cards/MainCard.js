@@ -9,7 +9,7 @@ export default function MainCard({ currentCard, isAnswered, isCorrectAnswer, onC
         <img className='jisho-link' src={'/jisho.png'} alt='Link to jisho' />
       </a>
       <h2>
-        {currentCard.kanji} {isAnswered ? ':' + currentCard.english : ''}
+        {currentCard.kanji.trim() ? currentCard.kanji : currentCard.kana} {isAnswered ? ':' + currentCard.english : ''}
       </h2>
       {isAnswered &&
         currentCard.examples &&
