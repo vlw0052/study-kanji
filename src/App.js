@@ -2,16 +2,15 @@ import React, { useReducer, useCallback } from 'react';
 import './App.css';
 import MainCard from './cards/MainCard';
 import MiniCards from './cards/MiniCards';
-import SelectionScreen from './SelectionScreen';
-import { ProgressBar } from './ProgressBar';
-import { Progress } from './Progress';
+import SelectionScreen from './components/SelectionScreen/SelectionScreen';
+import { ProgressBar } from './components/ProgressBar';
+import { Progress } from './components/Progress';
 import { deckReducer, initialState } from './deckReducer';
 import { createNewStartDeck, chooseRandomCard, getPercentage, moveCardTo, getNewAnswerCards, compareBy, useSaveProgress } from './func';
 
-export const App = () => {
+export const App = props => {
   let [state, dispatch] = useReducer(deckReducer, initialState());
   useSaveProgress(state);
-
   const nextCard = () => {
     const { isCorrectAnswer, deck, currentCard, isAnswered } = state;
     if (!isAnswered) return;
@@ -56,17 +55,23 @@ export const App = () => {
   const setDeck = data => {
     const startDeck = createNewStartDeck(data);
     const currentCard = chooseRandomCard(data.matchCards);
-    dispatch({ type: 'SET_DECK', payload: startDeck });
-    dispatch({ type: 'SET_CURRENT_CARD', payload: currentCard });
-    dispatch({ type: 'SET_ANSWER_CARDS', payload: getNewAnswerCards(startDeck, currentCard) });
-    dispatch({ type: 'UPDATE_SCORE', payload: initialState(true).score });
+    const answerCards = getNewAnswerCards(startDeck, currentCard);
+    dispatch({ type: 'SET_NEW_DECK', payload: { deck: startDeck, currentCard, answerCards } });
   };
   const updateDeck = useCallback(() => {
-    dispatch({ type: 'UPDATE_DECK' });
-  });
+    dispatch({ type: 'UPDATE_DECK', payload: true });
+  }, []);
   const { currentCard, score, isAnswered, isCorrectAnswer, deck, answerCards, updatingDeck } = state;
 
-  if (updatingDeck) return <SelectionScreen selectDeck={selectDeck} />;
+  if (updatingDeck)
+    return (
+      <SelectionScreen
+        selectDeck={selectDeck}
+        back={() => {
+          dispatch({ type: 'UPDATE_DECK', payload: false });
+        }}
+      />
+    );
   return (
     <div className='app-container'>
       <div className='progress-header'>

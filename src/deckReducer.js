@@ -41,6 +41,17 @@ export function deckReducer(state, action) {
         updatingDeck: false,
         showScore: false
       };
+    case 'SET_NEW_DECK':
+      return {
+        ...state,
+        deck: action.payload.deck,
+        answerCards: action.payload.answerCards,
+        currentCard: action.payload.currentCard,
+        isAnswered: false,
+        updatingDeck: false,
+        showScore: false,
+        score: initialState(true).score
+      };
     case 'SET_CURRENT_CARD':
       return {
         ...state,
@@ -77,7 +88,7 @@ export function deckReducer(state, action) {
     case 'UPDATE_DECK':
       return {
         ...state,
-        updatingDeck: true
+        updatingDeck: action.payload
       };
     case 'UPDATE_SCORE':
       return {
