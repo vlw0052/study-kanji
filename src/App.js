@@ -82,7 +82,7 @@ export const App = props => {
       </div>
 
       {state.showScore ? (
-        <h1>Your score {getPercentage(score.correct, score.total)} </h1>
+        <h1 className='score'>Your score {getPercentage(score.correct, score.total)} </h1>
       ) : (
         <main className='testing-section'>
           <MainCard currentCard={currentCard} onClick={nextCard} isAnswered={isAnswered} isCorrectAnswer={isCorrectAnswer} />
