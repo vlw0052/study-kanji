@@ -1,23 +1,28 @@
 import React from 'react';
-export const initialState = {
-  section: null,
-  currentCard: null,
-  deck: {
-    JLPTLevel: null,
-    group: null,
-    correct: [],
-    inCorrect: [],
-    unAnswered: []
-  },
-  score: {
-    correct: 0,
-    total: 0
-  },
-  isAnswered: false,
-  isCorrectAnswer: true,
-  answerCards: [],
-  showScore: false,
-  updatingDeck: true
+
+export const localStorageKey = 'kanji-l';
+export const initialState = (reset = false) => {
+  if (localStorage.getItem(localStorageKey) && !reset) return JSON.parse(localStorage.getItem(localStorageKey));
+  return {
+    section: null,
+    currentCard: null,
+    deck: {
+      JLPTLevel: null,
+      group: null,
+      correct: [],
+      inCorrect: [],
+      unAnswered: []
+    },
+    score: {
+      correct: 0,
+      total: 0
+    },
+    isAnswered: false,
+    isCorrectAnswer: true,
+    answerCards: [],
+    showScore: false,
+    updatingDeck: true
+  };
 };
 
 export const CardContext = React.createContext(initialState);
@@ -73,6 +78,11 @@ export function deckReducer(state, action) {
       return {
         ...state,
         updatingDeck: true
+      };
+    case 'UPDATE_SCORE':
+      return {
+        ...state,
+        score: action.payload
       };
     default:
       return state;

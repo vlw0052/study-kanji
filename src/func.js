@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import data from './cards/data.json';
+import { localStorageKey } from './deckReducer.js';
 /**
  * Creates a new start deck
  * @param {object} deck
@@ -96,4 +98,11 @@ export function shuffle(a) {
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
+}
+
+export function useSaveProgress(state) {
+  useEffect(() => {
+    localStorage.setItem(localStorageKey, JSON.stringify(state));
+    console.log('saved', state);
+  }, [state]);
 }

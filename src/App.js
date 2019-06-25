@@ -1,16 +1,16 @@
-import React, { useState, useReducer, useEffect, useCallback } from 'react';
+import React, { useReducer, useCallback } from 'react';
 import './App.css';
-import data from './cards/data.json';
 import MainCard from './cards/MainCard';
 import MiniCards from './cards/MiniCards';
 import SelectionScreen from './SelectionScreen';
 import { ProgressBar } from './ProgressBar';
 import { Progress } from './Progress';
 import { deckReducer, initialState } from './deckReducer';
-import { createNewStartDeck, chooseRandomCard, getPercentage, moveCardTo, getNewAnswerCards, compareBy } from './func';
+import { createNewStartDeck, chooseRandomCard, getPercentage, moveCardTo, getNewAnswerCards, compareBy, useSaveProgress } from './func';
 
 export const App = () => {
-  let [state, dispatch] = useReducer(deckReducer, initialState);
+  let [state, dispatch] = useReducer(deckReducer, initialState());
+  useSaveProgress(state);
 
   const nextCard = () => {
     const { isCorrectAnswer, deck, currentCard, isAnswered } = state;
@@ -32,9 +32,8 @@ export const App = () => {
       correct: isCorrect ? score.correct + 1 : score.correct,
       total: score.total + 1
     };
-    dispatch({ type: 'UPDATE_SCORE', score: newScore });
+    dispatch({ type: 'UPDATE_SCORE', payload: newScore });
   };
-
   const onCardChosen = card => {
     const { currentCard, isAnswered } = state;
     if (isAnswered) return;
@@ -60,6 +59,7 @@ export const App = () => {
     dispatch({ type: 'SET_DECK', payload: startDeck });
     dispatch({ type: 'SET_CURRENT_CARD', payload: currentCard });
     dispatch({ type: 'SET_ANSWER_CARDS', payload: getNewAnswerCards(startDeck, currentCard) });
+    dispatch({ type: 'UPDATE_SCORE', payload: initialState(true).score });
   };
   const updateDeck = useCallback(() => {
     dispatch({ type: 'UPDATE_DECK' });
