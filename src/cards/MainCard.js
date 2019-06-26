@@ -6,7 +6,7 @@ export default function MainCard({ currentCard, isAnswered, isCorrectAnswer, onC
   return (
     <div className={`main-card card ${isAnswered && isCorrectAnswer ? 'correct' : ''} ${isAnswered ? 'answered' : ''}`}>
       <a href={`https://jisho.org/search/%23kanji%20${currentCard ? currentCard.kanji : ''}`} target='_blank' rel='noopener noreferrer'>
-        <img className='jisho-link' src={'/jisho.png'} alt='Link to jisho' />
+        <img className='jisho-link' src={`${process.env.PUBLIC_URL}/jisho.png`} alt='Link to jisho' />
       </a>
       <h2>
         {currentCard.kanji.trim() ? currentCard.kanji : currentCard.kana} {isAnswered ? ':' + currentCard.english : ''}

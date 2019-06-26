@@ -36,6 +36,7 @@
 
 @media screen and (min-width: 768px) {
     .testing-section {
+        padding: 0 15px 55px;
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -115,4 +116,8 @@
 .score {
     text-align: center;
     grid-column: span 6;
+}
+
+button:focus {
+    background-color: rgba(0, 0, 0, 0.192)
 }
