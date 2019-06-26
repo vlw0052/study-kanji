@@ -6,7 +6,7 @@ import SelectionScreen from './components/SelectionScreen/SelectionScreen';
 import { ProgressBar } from './components/ProgressBar';
 import { Progress } from './components/Progress';
 import { deckReducer, initialState } from './deckReducer';
-import { createNewStartDeck, chooseRandomCard, getPercentage, moveCardTo, getNewAnswerCards, compareBy, useSaveProgress } from './func';
+import { createNewStartDeck, chooseRandomCard, getPercentage, moveCardTo, getNewAnswerCards, compareBy, useSaveProgress, fetchDeck } from './func';
 
 export const App = props => {
   let [state, dispatch] = useReducer(deckReducer, initialState());
@@ -46,11 +46,9 @@ export const App = props => {
     }
   };
   const selectDeck = (level, group) => {
-    fetch(`/decks/${level}-${group}.json`)
-      .then(data => data.json())
-      .then(data => {
-        setDeck(data);
-      });
+    fetchDeck(level, group).then(data => {
+      setDeck(data);
+    });
   };
   const setDeck = data => {
     const startDeck = createNewStartDeck(data);
@@ -82,7 +80,7 @@ export const App = props => {
       </div>
 
       {state.showScore ? (
-        <h1 className='score'>Your score {getPercentage(score.correct, score.total)} </h1>
+        <h1 className='score'>You scored {getPercentage(score.correct, score.total)}% </h1>
       ) : (
         <main className='testing-section'>
           <MainCard currentCard={currentCard} onClick={nextCard} isAnswered={isAnswered} isCorrectAnswer={isCorrectAnswer} />

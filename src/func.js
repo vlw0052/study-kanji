@@ -100,6 +100,9 @@ export function shuffle(a) {
   return a;
 }
 
+export function fetchDeck(level, group) {
+  return fetch(`${process.env.PUBLIC_URL}/decks/${level}-${group}.json`).then(data => data.json());
+}
 export function useSaveProgress(state) {
   useEffect(() => {
     localStorage.setItem(localStorageKey, JSON.stringify(state));
