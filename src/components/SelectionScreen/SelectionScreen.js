@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { decks } from '../../decks.json';
+import Level from './Level.js';
 
 function SelectionScreen(props) {
   const [selectedLevel, setLevel] = useState(null);
@@ -12,20 +13,21 @@ function SelectionScreen(props) {
     if (!selectedLevel) props.back();
     setLevel(null);
   };
+
   return (
     <div className='selection'>
       <h3>{selectedLevel ? 'Select A Group' : 'Select Your Level'}</h3>
       <div className='levels'>
         {!selectedLevel
           ? Object.keys(decks).map(l => (
-              <div title={`${decks[l].label}`} onClick={selectLevel(l)} className='level'>
+              <Level key={decks[l].label} title={`${decks[l].label}`} onClick={selectLevel(l)}>
                 {decks[l].label}
-              </div>
+              </Level>
             ))
           : Array.from(new Array(decks[selectedLevel].numberOfSections)).map((_, l) => (
-              <div title={`${l + 1}`} onClick={() => props.selectDeck(selectedLevel, l + 1)} className='level'>
+              <Level key={l} title={`${selectedLevel} Group ${l + 1}`} onClick={() => props.selectDeck(selectedLevel, l + 1)}>
                 {l + 1}
-              </div>
+              </Level>
             ))}
         <button className='level btn' onClick={back} title='Back'>
           <i className='material-icons'>arrow_backward</i>
