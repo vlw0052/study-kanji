@@ -88,10 +88,6 @@ export const getNewAnswerCards = (deck, currentCard) => {
   ]);
 };
 
-export function fetchSectionDeck(section) {
-  return Promise.resolve(data);
-}
-
 export function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -106,6 +102,5 @@ export function fetchDeck(level, group) {
 export function useSaveProgress(state) {
   useEffect(() => {
     localStorage.setItem(localStorageKey, JSON.stringify(state));
-    console.log('saved', state);
   }, [state]);
 }

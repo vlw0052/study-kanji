@@ -1,26 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-export const MiniCards = ({
-  answerCards,
-  isAnswered,
-  onCardChosen,
-  nextCard
-}) => {
-  const onNumberPress = () => {};
+export const MiniCards = ({ answerCards, isAnswered, onCardChosen, nextCard }) => {
+  const refs = useRef({});
+  const onNumberPress = event => {
+    const number = Number(+event.key);
+    if (number > 0 && number <= 9) {
+      onCardChosen(answerCards[number - 1]);
+      focusCard(number - 1);
+    }
+    if (isAnswered && event.keyCode === 13) {
+      nextCard();
+    }
+  };
   useEffect(() => {
-    document.addEventListener('keypress', onNumberPress);
+    document.addEventListener('keydown', onNumberPress);
     return document.removeEventListener('keypress', onNumberPress);
-  }, []);
-
+  }, [answerCards]);
+  const focusCard = index => {
+    if (refs.current[index]) refs.current[index].focus();
+  };
+  const addRef = (reference, index) => {
+    refs.current[index] = reference;
+  };
   const onKeyDown = (card, isClick = false) => event => {
     if (event.keyCode === 13) {
       if (isAnswered) {
         nextCard();
       } else {
-        setTimeout(() => {
+        Promise.resolve(null).then(() => {
           onCardChosen(card);
-        }, 100);
+        });
       }
     }
     if (isClick) {
@@ -30,11 +40,11 @@ export const MiniCards = ({
   return (
     <div className={'cards-group'}>
       {answerCards.map((card, i) => (
-        <div className=''>
+        <div key={card.english}>
           <div
+            ref={ref => addRef(ref, i)}
             tabIndex={0}
-            key={card.english}
-            nice={card.english}
+            title={card.english}
             onClick={onKeyDown(card, true)}
             onKeyDown={onKeyDown(card)}
             className='mini-card card'

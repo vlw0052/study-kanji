@@ -60,7 +60,7 @@
     padding: 10px;
 }
 
-.mini-card:focus {
+.mini-card:focus, .mini-card:active {
     color: var(--success)
 }
 
@@ -118,6 +118,6 @@
     grid-column: span 6;
 }
 
-button:focus {
+button:focus, button:active {
     background-color: rgba(0, 0, 0, 0.192)
 }
