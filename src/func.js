@@ -77,15 +77,13 @@ export const getPercentage = (numerator, denominator) => {
 };
 
 export const getNewAnswerCards = (deck, currentCard) => {
-  return shuffle([
-    ...getRandomItems([...deck.unAnswered, ...deck.inCorrect, ...deck.correct], {
-      fnException: card => {
-        return !areCardsEqual(card, currentCard);
-      },
-      numberOfItems: +process.env.REACT_APP_NUMBER_OF_ANSWERS || 8
-    }),
-    currentCard
-  ]);
+  const randomItems = getRandomItems([...deck.unAnswered, ...deck.inCorrect, ...deck.correct], {
+    fnException: card => {
+      return !areCardsEqual(card, currentCard);
+    },
+    numberOfItems: +process.env.REACT_APP_NUMBER_OF_ANSWERS || 8
+  });
+  return shuffle([...randomItems, currentCard]);
 };
 
 export function shuffle(a) {

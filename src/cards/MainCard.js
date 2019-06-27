@@ -2,7 +2,7 @@ import React from 'react';
 import { getRandomItems } from '../func';
 
 export default function MainCard({ currentCard, isAnswered, isCorrectAnswer, onClick }) {
-  if (!currentCard) return 'No Card';
+  if (!currentCard) return <h2>Choose a deck</h2>;
   return (
     <div className={`main-card card ${isAnswered && isCorrectAnswer ? 'correct' : ''} ${isAnswered ? 'answered' : ''}`}>
       <a href={`https://jisho.org/search/%23kanji%20${currentCard ? currentCard.kanji : ''}`} target='_blank' rel='noopener noreferrer'>
@@ -14,7 +14,7 @@ export default function MainCard({ currentCard, isAnswered, isCorrectAnswer, onC
       {isAnswered &&
         currentCard.examples &&
         getRandomItems(currentCard.examples, { numberOfItems: 4 }).map((ex, i) => (
-          <div key={`${i}-${ex.englishWord}`}>
+          <div className='examples' key={`${i}-${ex.englishWord}`}>
             {' '}
             {ex.kanjiWord} ({ex.kanaWord}) : {ex.englishWord}{' '}
           </div>

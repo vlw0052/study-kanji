@@ -4,7 +4,7 @@ exports[`Card should render 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <MainCard
-    card={
+    currentCard={
       Object {
         "english": "Convenient",
         "examples": Array [
@@ -55,48 +55,26 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
+        <a
+          href="https://jisho.org/search/%23kanji%20便"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <img
+            alt="Link to jisho"
+            className="jisho-link"
+            src="/jisho.png"
+          />
+        </a>,
         <h2>
           便
+           
+          
         </h2>,
-        Array [
-          <div>
-             
-            船便
-             (
-            ふなびん 
-            ) : 
-            Surface mail (ship)
-              
-          </div>,
-          <div>
-             
-            宅配便
-             (
-            たくはいびん 
-            ) : 
-            Express home delivery
-              
-          </div>,
-          <div>
-             
-            郵便
-             (
-            ゆうびん 
-            ) : 
-            Mail, postal service
-              
-          </div>,
-          <div>
-             
-            郵便局
-             (
-            ゆうびんきょく 
-            ) : 
-            Post office
-              
-          </div>,
-        ],
+        undefined,
+        undefined,
       ],
+      "className": "main-card card  ",
     },
     "ref": null,
     "rendered": Array [
@@ -105,120 +83,52 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "host",
         "props": Object {
-          "children": "便",
+          "children": <img
+            alt="Link to jisho"
+            className="jisho-link"
+            src="/jisho.png"
+          />,
+          "href": "https://jisho.org/search/%23kanji%20便",
+          "rel": "noopener noreferrer",
+          "target": "_blank",
         },
         "ref": null,
-        "rendered": "便",
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "alt": "Link to jisho",
+            "className": "jisho-link",
+            "src": "/jisho.png",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "img",
+        },
+        "type": "a",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            "便",
+            " ",
+            "",
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          "便",
+          " ",
+          "",
+        ],
         "type": "h2",
       },
-      Object {
-        "instance": null,
-        "key": "0-Surface mail (ship)",
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            " ",
-            "船便",
-            " (",
-            "ふなびん ",
-            ") : ",
-            "Surface mail (ship)",
-            "  ",
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          " ",
-          "船便",
-          " (",
-          "ふなびん ",
-          ") : ",
-          "Surface mail (ship)",
-          "  ",
-        ],
-        "type": "div",
-      },
-      Object {
-        "instance": null,
-        "key": "1-Express home delivery",
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            " ",
-            "宅配便",
-            " (",
-            "たくはいびん ",
-            ") : ",
-            "Express home delivery",
-            "  ",
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          " ",
-          "宅配便",
-          " (",
-          "たくはいびん ",
-          ") : ",
-          "Express home delivery",
-          "  ",
-        ],
-        "type": "div",
-      },
-      Object {
-        "instance": null,
-        "key": "2-Mail, postal service",
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            " ",
-            "郵便",
-            " (",
-            "ゆうびん ",
-            ") : ",
-            "Mail, postal service",
-            "  ",
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          " ",
-          "郵便",
-          " (",
-          "ゆうびん ",
-          ") : ",
-          "Mail, postal service",
-          "  ",
-        ],
-        "type": "div",
-      },
-      Object {
-        "instance": null,
-        "key": "3-Post office",
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            " ",
-            "郵便局",
-            " (",
-            "ゆうびんきょく ",
-            ") : ",
-            "Post office",
-            "  ",
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          " ",
-          "郵便局",
-          " (",
-          "ゆうびんきょく ",
-          ") : ",
-          "Post office",
-          "  ",
-        ],
-        "type": "div",
-      },
+      undefined,
+      undefined,
     ],
     "type": "div",
   },
@@ -229,48 +139,26 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
+          <a
+            href="https://jisho.org/search/%23kanji%20便"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <img
+              alt="Link to jisho"
+              className="jisho-link"
+              src="/jisho.png"
+            />
+          </a>,
           <h2>
             便
+             
+            
           </h2>,
-          Array [
-            <div>
-               
-              船便
-               (
-              ふなびん 
-              ) : 
-              Surface mail (ship)
-                
-            </div>,
-            <div>
-               
-              宅配便
-               (
-              たくはいびん 
-              ) : 
-              Express home delivery
-                
-            </div>,
-            <div>
-               
-              郵便
-               (
-              ゆうびん 
-              ) : 
-              Mail, postal service
-                
-            </div>,
-            <div>
-               
-              郵便局
-               (
-              ゆうびんきょく 
-              ) : 
-              Post office
-                
-            </div>,
-          ],
+          undefined,
+          undefined,
         ],
+        "className": "main-card card  ",
       },
       "ref": null,
       "rendered": Array [
@@ -279,120 +167,52 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": "便",
+            "children": <img
+              alt="Link to jisho"
+              className="jisho-link"
+              src="/jisho.png"
+            />,
+            "href": "https://jisho.org/search/%23kanji%20便",
+            "rel": "noopener noreferrer",
+            "target": "_blank",
           },
           "ref": null,
-          "rendered": "便",
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "alt": "Link to jisho",
+              "className": "jisho-link",
+              "src": "/jisho.png",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "img",
+          },
+          "type": "a",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              "便",
+              " ",
+              "",
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            "便",
+            " ",
+            "",
+          ],
           "type": "h2",
         },
-        Object {
-          "instance": null,
-          "key": "0-Surface mail (ship)",
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              " ",
-              "船便",
-              " (",
-              "ふなびん ",
-              ") : ",
-              "Surface mail (ship)",
-              "  ",
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            " ",
-            "船便",
-            " (",
-            "ふなびん ",
-            ") : ",
-            "Surface mail (ship)",
-            "  ",
-          ],
-          "type": "div",
-        },
-        Object {
-          "instance": null,
-          "key": "1-Express home delivery",
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              " ",
-              "宅配便",
-              " (",
-              "たくはいびん ",
-              ") : ",
-              "Express home delivery",
-              "  ",
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            " ",
-            "宅配便",
-            " (",
-            "たくはいびん ",
-            ") : ",
-            "Express home delivery",
-            "  ",
-          ],
-          "type": "div",
-        },
-        Object {
-          "instance": null,
-          "key": "2-Mail, postal service",
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              " ",
-              "郵便",
-              " (",
-              "ゆうびん ",
-              ") : ",
-              "Mail, postal service",
-              "  ",
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            " ",
-            "郵便",
-            " (",
-            "ゆうびん ",
-            ") : ",
-            "Mail, postal service",
-            "  ",
-          ],
-          "type": "div",
-        },
-        Object {
-          "instance": null,
-          "key": "3-Post office",
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              " ",
-              "郵便局",
-              " (",
-              "ゆうびんきょく ",
-              ") : ",
-              "Post office",
-              "  ",
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            " ",
-            "郵便局",
-            " (",
-            "ゆうびんきょく ",
-            ") : ",
-            "Post office",
-            "  ",
-          ],
-          "type": "div",
-        },
+        undefined,
+        undefined,
       ],
       "type": "div",
     },
@@ -409,7 +229,10 @@ ShallowWrapper {
           "getChildContext": Object {
             "calledByRenderer": false,
           },
-          "getDerivedStateFromProps": true,
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
           "getSnapshotBeforeUpdate": true,
           "setState": Object {
             "skipsComponentDidUpdateOnNullish": true,
@@ -417,6 +240,8 @@ ShallowWrapper {
         },
       },
     },
+    Symbol(enzyme.__providerValues__): undefined,
   },
+  Symbol(enzyme.__providerValues__): Map {},
 }
 `;
