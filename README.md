@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project can be found at [Study Dat Kanji](https://vlw2.com/kanji). 
+It's an application to help me continue my kanji studies. 
+
+Inspiration comes from [Study Kanji](http://studykanji.net/kanjiquiz/) which wasn't response. So I couldn't use it on the go.
+I couldn't find the orignal creator of it to help so I decided to make my own.
 
 ## TODO
 
@@ -6,7 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [] Save scores and show in select menu
 - [] Show full card on hold of mini card
 - [] Show list of kanji on hold of Select group
-- [] Fix jisho for kana
+- [] Fix jisho link for kana
 
 ## Available Scripts
 
@@ -25,32 +29,4 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Some but not all of this application was done using TTD in Jest and Enzyme.
