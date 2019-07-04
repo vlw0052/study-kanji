@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import data from './cards/data.json';
 import { localStorageKey } from './deckReducer.js';
 /**
  * Creates a new start deck
@@ -68,6 +67,12 @@ export const moveCardTo = (isCorrect = true) => (deck, card) => {
   };
 };
 
+/**
+ * Computes the percentage of of the number passed in, to a fixed 2 decimal points.
+ * @param {number} numerator
+ * @param {number} denominator
+ * @returns {number}
+ */
 export const getPercentage = (numerator, denominator) => {
   if (denominator <= 0 || numerator <= 0) {
     return 0;
@@ -95,10 +100,40 @@ export function shuffle(a) {
 }
 
 export function fetchDeck(level, group) {
-  return fetch(`${process.env.PUBLIC_URL}/decks/${level}-${group}.json`).then(data => data.json());
+  return fetch(`${process.env.PUBLIC_URL}/decks/JLPT${level}-${group}.json`).then(data => data.json());
 }
 export function useSaveProgress(state) {
   useEffect(() => {
     localStorage.setItem(localStorageKey, JSON.stringify(state));
   }, [state]);
+}
+
+/**
+ * Looks if there is saved grade data in localStorage
+ * @param {string} level the level to look for grade
+ * @param {number} group the group to look up grade
+ */
+export function gradeForGroup(level, group) {
+  const gradesLocal = localStorage.getItem(`grades`);
+  const grades = JSON.parse(gradesLocal);
+  debugger;
+  if (grades && grades[`${level}-${group}`]) {
+    const grade = grades[`${level}-${group}`];
+    const result = getPercentage(grade.correct, grade.total).toString();
+    return result;
+  } else {
+    return '';
+  }
+}
+
+export function saveGradeForGroup(level, group, grade) {
+  const gradesLocal = localStorage.getItem(`grades`);
+  let grades = JSON.parse(gradesLocal);
+  if (grades) {
+    grades[`${level}-${group}`] = grade;
+    localStorage.setItem('grades', JSON.stringify(grades));
+  } else {
+    grades = JSON.stringify({ [`${level}-${group}`]: grade });
+    localStorage.setItem('grades', grades);
+  }
 }

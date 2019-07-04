@@ -1,4 +1,4 @@
-import { createNewStartDeck, moveCardTo, getPercentage, fetchDeck } from '../func';
+import { createNewStartDeck, moveCardTo, getPercentage, fetchDeck, gradeForGroup } from '../func';
 import deck from './data.json';
 
 describe('create a new deck', () => {
@@ -94,3 +94,47 @@ describe('should fetch json data', () => {
     });
   });
 });
+
+describe.only('retrieving grade data', () => {
+  beforeAll(() => {
+    const initialState = {
+      grades: JSON.stringify({
+        [`JLPT3-1`]: '95',
+        [`JLPT3-2`]: '100'
+      })
+    };
+    Object.defineProperty(window, 'localStorage', {
+      value: makeMockLocalStorage(initialState)
+    });
+  });
+
+  it('should get empty string', () => {
+    expect(gradeForGroup('JLPT3', 23)).toBe('');
+  });
+  it('should retrieve 95 from localStorage for group JLPT3-1', () => {
+    const initialStorage = { grades: JSON.stringify({ 'JLPT3-2': '100' }) };
+    expect(gradeForGroup('JLPT3', 1)).toBe('95');
+  });
+
+  it('should retrieve 100 from localStorage for group JLPT3-1', () => {
+    expect(gradeForGroup('JLPT3', 2)).toBe('100');
+  });
+});
+
+function makeMockLocalStorage(initialState = {}) {
+  let state = initialState;
+  return {
+    getItem: function(key) {
+      return state[key];
+    },
+    setItem: function(key, value) {
+      state[key] = value.toString();
+    },
+    clear: function() {
+      state = {};
+    },
+    removeItem: function(key) {
+      delete state[key];
+    }
+  };
+}

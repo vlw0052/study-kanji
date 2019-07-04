@@ -6,7 +6,17 @@ import SelectionScreen from './components/SelectionScreen/SelectionScreen';
 import { ProgressBar } from './components/ProgressBar';
 import { Progress } from './components/Progress';
 import { deckReducer, initialState } from './deckReducer';
-import { createNewStartDeck, chooseRandomCard, getPercentage, moveCardTo, getNewAnswerCards, compareBy, useSaveProgress, fetchDeck } from './func';
+import {
+  createNewStartDeck,
+  chooseRandomCard,
+  getPercentage,
+  moveCardTo,
+  getNewAnswerCards,
+  compareBy,
+  useSaveProgress,
+  fetchDeck,
+  saveGradeForGroup
+} from './func';
 
 export const App = props => {
   let [state, dispatch] = useReducer(deckReducer, initialState());
@@ -21,6 +31,7 @@ export const App = props => {
       dispatch({ type: 'SET_CURRENT_CARD', payload: newCurrentCard });
       dispatch({ type: 'SET_ANSWER_CARDS', payload: getNewAnswerCards(newDeck, newCurrentCard) });
     } else {
+      saveGradeForGroup(state.deck.JLPTLevel, state.deck.group, state.score);
       dispatch({ type: 'SHOW_SCORE' });
     }
   };

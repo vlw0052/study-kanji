@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { decks } from '../../decks.json';
 import Level from './Level.js';
+import { gradeForGroup } from '../../func.js';
 
 function SelectionScreen(props) {
   const [selectedLevel, setLevel] = useState(null);
@@ -19,13 +20,20 @@ function SelectionScreen(props) {
       <h3>{selectedLevel ? 'Select A Group' : 'Select Your Level'}</h3>
       <div className='levels'>
         {!selectedLevel
-          ? Object.keys(decks).map(l => (
-              <Level key={decks[l].label} title={`${decks[l].label}`} onClick={selectLevel(l)}>
-                {decks[l].label}
-              </Level>
-            ))
+          ? Object.keys(decks)
+              .reverse()
+              .map(l => (
+                <Level key={decks[l].label} title={`${decks[l].label}`} onClick={selectLevel(l)}>
+                  {decks[l].label}
+                </Level>
+              ))
           : Array.from(new Array(decks[selectedLevel].numberOfSections)).map((_, l) => (
-              <Level key={l} title={`${selectedLevel} Group ${l + 1}`} onClick={() => props.selectDeck(selectedLevel, l + 1)}>
+              <Level
+                key={l}
+                grade={gradeForGroup(selectedLevel, l + 1)}
+                title={`${selectedLevel} Group ${l + 1}`}
+                onClick={() => props.selectDeck(selectedLevel, l + 1)}
+              >
                 {l + 1}
               </Level>
             ))}

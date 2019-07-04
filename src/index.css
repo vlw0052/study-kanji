@@ -35,6 +35,7 @@ code {
 }
 
 .level {
+  position: relative;
   display: grid;
   align-items: center;
   text-align: center;
@@ -44,6 +45,15 @@ code {
   height: 23vh;
   transition: .23s ease-in-out;
   cursor: pointer;
+}
+
+.group-grade {
+  position: absolute;
+  margin: 0;
+  bottom: 0px;
+  right: 15px;
+  font-size: 1.25rem;
+  color: #037A2A;
 }
 
 .level:hover {
