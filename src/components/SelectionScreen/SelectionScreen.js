@@ -14,10 +14,15 @@ function SelectionScreen(props) {
     if (!selectedLevel) props.back();
     setLevel(null);
   };
-
+  const getSelectHeader = _ => {
+    if (selectedLevel) {
+      return 'Select A Group';
+    }
+    return ['Select a level', <small> Easiest to Hardest </small>];
+  };
   return (
     <div className='selection'>
-      <h3>{selectedLevel ? 'Select A Group' : 'Select Your Level'}</h3>
+      <h3 className={'select-level-title'}>{getSelectHeader()}</h3>
       <div className='levels'>
         {!selectedLevel
           ? Object.keys(decks)

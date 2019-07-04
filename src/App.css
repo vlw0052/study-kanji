@@ -2,6 +2,17 @@
     --success: #058d00;
 }
 
+.select-level-title {}
+
+.select-level-title small {
+    font-size: 45%;
+    color: #024719;
+    line-height: 1;
+    clear: both;
+    display: flex;
+    justify-content: center;
+}
+
 .app-container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
