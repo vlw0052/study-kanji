@@ -1,16 +1,16 @@
 This project can be found at <a href="https://vlw2.com/kanji" target="_blank">Study Dat Kanji</a>
-It's an application to help me continue my kanji studies. 
+It's an application to help me continue my kanji studies.
 
 Inspiration comes from <a href="http://studykanji.net/kanjiquiz/" target="_blank">Study Kanji</a> which wasn't response. So I couldn't use it on the go.
 I couldn't find the orignal creator of it to help so I decided to make my own.
 
 ## TODO
 
+- [x] Save scores and show in select menu
+- [x] Fix jisho link for kana
 - [] Make a replay button on showing score
-- [] Save scores and show in select menu
 - [] Show full card on hold of mini card
 - [] Show list of kanji on hold of Select group
-- [] Fix jisho link for kana
 
 ## Available Scripts
 
