@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { compareBy } from '../func';
 
 export const MiniCards = ({ answerCards, isAnswered, onCardChosen, nextCard }) => {
   const refs = useRef({});
@@ -40,7 +41,7 @@ export const MiniCards = ({ answerCards, isAnswered, onCardChosen, nextCard }) =
   return (
     <div className={'cards-group'}>
       {answerCards.map((card, i) => (
-        <div key={card.english}>
+        <div key={card.english + ' ' + card[compareBy(card)]}>
           <div
             ref={ref => addRef(ref, i)}
             tabIndex={0}
