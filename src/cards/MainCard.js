@@ -1,15 +1,16 @@
 import React from 'react';
-import { getRandomItems } from '../func';
+import { getRandomItems, compareBy } from '../func';
 
 export default function MainCard({ currentCard, isAnswered, isCorrectAnswer, onClick }) {
   if (!currentCard) return <h2>Choose a deck</h2>;
+  const mainKey = compareBy(currentCard);
   return (
     <div className={`main-card card ${isAnswered && isCorrectAnswer ? 'correct' : ''} ${isAnswered ? 'answered' : ''}`}>
-      <a href={`https://jisho.org/search/%23kanji%20${currentCard ? currentCard.kanji : ''}`} target='_blank' rel='noopener noreferrer'>
+      <a href={`https://jisho.org/search/%23kanji%20${currentCard ? currentCard[mainKey] : ''}`} target='_blank' rel='noopener noreferrer'>
         <img className='jisho-link' src={`${process.env.PUBLIC_URL}/jisho.png`} alt='Link to jisho' />
       </a>
       <h2>
-        {currentCard.kanji.trim() ? currentCard.kanji : currentCard.kana} {isAnswered ? ':' + currentCard.english : ''}
+        {currentCard[mainKey]} {isAnswered ? ':' + currentCard.english : ''}
       </h2>
       {isAnswered &&
         currentCard.examples &&
