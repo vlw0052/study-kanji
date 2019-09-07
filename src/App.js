@@ -9,7 +9,6 @@ import { deckReducer, initialState } from './deckReducer';
 import {
   createNewStartDeck,
   chooseRandomCard,
-  getPercentage,
   moveCardTo,
   getNewAnswerCards,
   compareBy,
@@ -17,6 +16,7 @@ import {
   fetchDeck,
   saveGradeForGroup
 } from './func';
+import { ScoreSection } from './components/ScoreSection';
 
 export const App = props => {
   let [state, dispatch] = useReducer(deckReducer, initialState());
@@ -91,7 +91,7 @@ export const App = props => {
       </div>
 
       {state.showScore ? (
-        <h1 className='score'>You scored {getPercentage(score.correct, score.total)}% </h1>
+        <ScoreSection score={score} />
       ) : (
         <main className='testing-section'>
           <MainCard currentCard={currentCard} onClick={nextCard} isAnswered={isAnswered} isCorrectAnswer={isCorrectAnswer} />

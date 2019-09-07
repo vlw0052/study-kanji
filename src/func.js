@@ -116,7 +116,6 @@ export function useSaveProgress(state) {
 export function gradeForGroup(level, group) {
   const gradesLocal = localStorage.getItem(`grades`);
   const grades = JSON.parse(gradesLocal);
-  debugger;
   if (grades && grades[`${level}-${group}`]) {
     const grade = grades[`${level}-${group}`];
     const result = getPercentage(grade.correct, grade.total).toString();
@@ -133,7 +132,8 @@ export function saveGradeForGroup(level, group, grade) {
     grades[`${level}-${group}`] = grade;
     localStorage.setItem('grades', JSON.stringify(grades));
   } else {
-    grades = JSON.stringify({ [`${level}-${group}`]: grade });
+    grades = JSON.stringify({
+      [`${level}-${group}`]: grade });
     localStorage.setItem('grades', grades);
   }
 }
