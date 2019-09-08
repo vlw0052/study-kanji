@@ -56,7 +56,7 @@ const handlers = {
     showScore: false,
     score: initialState(true).score
   }),
-  [ActionTypes.RETRY_DECK]: ({ state, action }) => ({
+  [ActionTypes.RETRY_DECK]: ({ state }) => ({
     deck: {
       ...state.deck,
       correct: [],
@@ -98,11 +98,10 @@ const handlers = {
 };
 
 export function deckReducer(state, action) {
-  if (action.type in handlers)
-    return {
-      ...state,
-      ...handlers[action.type]({ state, action })
-    };
+  if (action.type in handlers) {
+    const handlerResult = handlers[action.type]({ state, action });
+    return Object.assign({}, state, handlerResult);
+  }
   return state;
 }
 
