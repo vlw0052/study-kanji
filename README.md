@@ -8,12 +8,12 @@ I couldn't find the orignal creator of it to help so I decided to make my own.
 
 - [x] Save scores and show in select menu
 - [x] Fix jisho link for kana
-- [] Make a replay button on showing score
+- [x] Make a replay button on showing score
 - [] Show full card on hold of mini card
 - [] Show list of kanji on hold of Select group
 - [] Add settings
-  - show numbers
-  -
+  - show numbers?
+  - dark mode
 
 ## Available Scripts
 
