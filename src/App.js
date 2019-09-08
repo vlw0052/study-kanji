@@ -94,7 +94,7 @@ export const App = props => {
       </div>
 
       {state.showScore ? (
-        <ScoreSection score={score} onChangeDeck={updateDeck} onPlayAgain={playAgain} />
+        <ScoreSection score={score} deck={deck} onChangeDeck={updateDeck} onPlayAgain={playAgain} />
       ) : (
         <main className='testing-section'>
           <MainCard currentCard={currentCard} onClick={nextCard} isAnswered={isAnswered} isCorrectAnswer={isCorrectAnswer} />

@@ -9,7 +9,9 @@ function ScoreSection(props) {
       <h1>You scored {getPercentage(props.score.correct, props.score.total)}% </h1>
 
       <div className='score-buttons'>
-        <h2>Level: {JSON.stringify(props.currentDeck)}</h2>
+        <h2>
+          JLPT Level {props.deck.JLPTLevel} Group {props.deck.group}
+        </h2>
         <Level title='Play Again' onClick={props.onPlayAgain}>
           Play Again
         </Level>
@@ -24,7 +26,7 @@ function ScoreSection(props) {
 ScoreSection.propTypes = {
   onPlayAgain: PropTypes.func.isRequired,
   onChangeDeck: PropTypes.func.isRequired,
-  currentDeck: PropTypes.object.isRequired,
+  deck: PropTypes.object.isRequired,
   score: PropTypes.shape({
     correct: PropTypes.number,
     total: PropTypes.number
