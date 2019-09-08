@@ -5,7 +5,7 @@ import MiniCards from './cards/MiniCards';
 import SelectionScreen from './components/SelectionScreen/SelectionScreen';
 import { ProgressBar } from './components/ProgressBar';
 import { Progress } from './components/Progress';
-import { deckReducer, initialState } from './deckReducer';
+import { deckReducer, initialState, Actions } from './deckReducer';
 import {
   createNewStartDeck,
   chooseRandomCard,
@@ -27,12 +27,12 @@ export const App = props => {
     const newDeck = moveCardTo(isCorrectAnswer)(deck, currentCard);
     const newCurrentCard = chooseRandomCard([...newDeck.unAnswered, ...newDeck.inCorrect]);
     if (newCurrentCard) {
-      dispatch({ type: 'SET_DECK', payload: newDeck });
-      dispatch({ type: 'SET_CURRENT_CARD', payload: newCurrentCard });
-      dispatch({ type: 'SET_ANSWER_CARDS', payload: getNewAnswerCards(newDeck, newCurrentCard) });
+      dispatch(Actions.setDeck(newDeck));
+      dispatch(Actions.setCurrentCard(newCurrentCard));
+      dispatch(Actions.setAnswerCards(getNewAnswerCards(newDeck, newCurrentCard)));
     } else {
       saveGradeForGroup(state.deck.JLPTLevel, state.deck.group, state.score);
-      dispatch({ type: 'SHOW_SCORE' });
+      dispatch(Actions.showScore());
     }
   };
 
@@ -42,17 +42,17 @@ export const App = props => {
       correct: isCorrect ? score.correct + 1 : score.correct,
       total: score.total + 1
     };
-    dispatch({ type: 'UPDATE_SCORE', payload: newScore });
+    dispatch(Actions.updateScore(newScore));
   };
   const onCardChosen = card => {
     const { currentCard, isAnswered } = state;
     if (isAnswered) return;
     const compareKey = compareBy(card);
     if (currentCard[compareKey] === card[compareKey]) {
-      dispatch({ type: 'SET_ANSWERED_CORRECT' });
+      dispatch(Actions.correctAnswer());
       updateScore(true);
     } else {
-      dispatch({ type: 'SET_ANSWERED_INCORRECT' });
+      dispatch(Actions.incorrectAnswer());
       updateScore(false);
     }
   };
@@ -65,19 +65,22 @@ export const App = props => {
     const startDeck = createNewStartDeck(data);
     const currentCard = chooseRandomCard(data.matchCards);
     const answerCards = getNewAnswerCards(startDeck, currentCard);
-    dispatch({ type: 'SET_NEW_DECK', payload: { deck: startDeck, currentCard, answerCards } });
+    dispatch(Actions.setNewDeck(startDeck, currentCard, answerCards));
+  };
+  const playAgain = () => {
+    dispatch(Actions.retryDeck());
   };
   const updateDeck = useCallback(() => {
-    dispatch({ type: 'UPDATE_DECK', payload: true });
+    dispatch(Actions.showSelectionScreen(true));
   }, []);
-  const { currentCard, score, isAnswered, isCorrectAnswer, deck, answerCards, updatingDeck } = state;
+  const { currentCard, score, isAnswered, isCorrectAnswer, deck, answerCards, showSelectionScreen } = state;
 
-  if (updatingDeck)
+  if (showSelectionScreen)
     return (
       <SelectionScreen
         selectDeck={selectDeck}
         back={() => {
-          dispatch({ type: 'UPDATE_DECK', payload: false });
+          dispatch(Actions.showSelectionScreen(false));
         }}
       />
     );
@@ -91,7 +94,7 @@ export const App = props => {
       </div>
 
       {state.showScore ? (
-        <ScoreSection score={score} />
+        <ScoreSection score={score} onChangeDeck={updateDeck} onPlayAgain={playAgain} />
       ) : (
         <main className='testing-section'>
           <MainCard currentCard={currentCard} onClick={nextCard} isAnswered={isAnswered} isCorrectAnswer={isCorrectAnswer} />

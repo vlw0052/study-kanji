@@ -1,6 +1,18 @@
 import React from 'react';
 
 export const localStorageKey = 'kanji-l';
+export const ActionTypes = {
+  SET_ANSWERED_CORRECT: 'SET_ANSWERED_CORRECT',
+  SET_ANSWERED_INCORRECT: 'SET_ANSWERED_INCORRECT',
+  SET_DECK: 'SET_DECK',
+  SET_CURRENT_CARD: 'SET_CURRENT_CARD',
+  SET_ANSWER_CARDS: 'SET_ANSWER_CARDS',
+  SHOW_SCORE: 'SHOW_SCORE',
+  UPDATE_SCORE: 'UPDATE_SCORE',
+  SET_NEW_DECK: 'SET_NEW_DECK',
+  SELECTION_SCREEN: 'SELECTION_SCREEN',
+  RETRY_DECK: 'RETRY_DECK'
+};
 export const initialState = (reset = false) => {
   if (localStorage.getItem(localStorageKey) && !reset) return JSON.parse(localStorage.getItem(localStorageKey));
   return {
@@ -21,7 +33,7 @@ export const initialState = (reset = false) => {
     isCorrectAnswer: true,
     answerCards: [],
     showScore: false,
-    updatingDeck: true
+    showSelectionScreen: true
   };
 };
 
@@ -38,7 +50,7 @@ export function deckReducer(state, action) {
       return {
         ...state,
         deck: action.payload,
-        updatingDeck: false,
+        showSelectionScreen: false,
         showScore: false
       };
     case 'SET_NEW_DECK':
@@ -48,7 +60,21 @@ export function deckReducer(state, action) {
         answerCards: action.payload.answerCards,
         currentCard: action.payload.currentCard,
         isAnswered: false,
-        updatingDeck: false,
+        showSelectionScreen: false,
+        showScore: false,
+        score: initialState(true).score
+      };
+    case 'RETRY_DECK':
+      return {
+        ...state,
+        deck: {
+          ...state.deck,
+          correct: [],
+          inCorrect: [],
+          unAnswered: [...state.deck.correct, ...state.deck.inCorrect, ...state.deck.unAnswered]
+        },
+        isAnswered: false,
+        showSelectionScreen: false,
         showScore: false,
         score: initialState(true).score
       };
@@ -85,10 +111,10 @@ export function deckReducer(state, action) {
         ...state,
         showScore: false
       };
-    case 'UPDATE_DECK':
+    case 'SELECTION_SCREEN':
       return {
         ...state,
-        updatingDeck: action.payload
+        showSelectionScreen: action.payload
       };
     case 'UPDATE_SCORE':
       return {
@@ -99,3 +125,16 @@ export function deckReducer(state, action) {
       return state;
   }
 }
+
+export const Actions = {
+  correctAnswer: () => ({ type: ActionTypes.SET_ANSWERED_CORRECT }),
+  incorrectAnswer: () => ({ type: ActionTypes.SET_ANSWERED_INCORRECT }),
+  setDeck: newDeck => ({ type: ActionTypes.SET_DECK, payload: newDeck }),
+  setCurrentCard: newCurrentCard => ({ type: ActionTypes.SET_CURRENT_CARD, payload: newCurrentCard }),
+  setAnswerCards: newAnswerCards => ({ type: ActionTypes.SET_ANSWER_CARDS, payload: newAnswerCards }),
+  showScore: () => ({ type: ActionTypes.SHOW_SCORE }),
+  updateScore: newScore => ({ type: ActionTypes.UPDATE_SCORE, payload: newScore }),
+  setNewDeck: (deck, currentCard, answerCards) => ({ type: ActionTypes.SET_NEW_DECK, payload: { deck, currentCard, answerCards } }),
+  showSelectionScreen: isSelectionScreen => ({ type: ActionTypes.SELECTION_SCREEN, payload: isSelectionScreen }),
+  retryDeck: () => ({ type: ActionTypes.RETRY_DECK })
+};
