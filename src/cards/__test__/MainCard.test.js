@@ -16,10 +16,6 @@ const setup = overrideProps => {
 };
 
 describe('Card', () => {
-  it('should render', () => {
-    const { wrapper } = setup();
-    expect(wrapper).toMatchSnapshot();
-  });
   it('should have next button', () => {
     const { wrapper } = setup({ isAnswered: true, isCorrectAnswer: true });
     expect(wrapper.exists('.next-button')).toBe(true);

@@ -28,7 +28,7 @@ export const getRandomItems = (items, { numberOfItems = 9, fnException = item =>
   let randomItems = [];
   let chosenIndexes = [];
   let triedIndexes = [];
-  if (items.length <= numberOfItems) return items;
+  if (items.length <= numberOfItems) return items.filter(fnException);
   for (let i = 0; i < numberOfItems; i++) {
     let randIndex = Math.floor(Math.random() * 1000) % (items.length - 1);
     if (!chosenIndexes.includes(randIndex) && fnException(items[randIndex])) {
@@ -133,7 +133,8 @@ export function saveGradeForGroup(level, group, grade) {
     localStorage.setItem('grades', JSON.stringify(grades));
   } else {
     grades = JSON.stringify({
-      [`${level}-${group}`]: grade });
+      [`${level}-${group}`]: grade
+    });
     localStorage.setItem('grades', grades);
   }
 }

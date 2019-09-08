@@ -70,7 +70,7 @@ describe('should fetch json data', () => {
     global.fetch.mockClear();
   });
   it('should fetch json data for JLPT level1-1', done => {
-    fetchDeck('JLPT1', 1).then(() => {
+    fetchDeck(1, 1).then(() => {
       expect(global.fetch).toHaveBeenCalledTimes(1);
       expect(global.fetch).toHaveBeenCalledWith(`${process.env.PUBLIC_URL}/decks/JLPT1-1.json`);
       done();
@@ -78,7 +78,7 @@ describe('should fetch json data', () => {
   });
 
   it('should fetch json data for JLPT level2-10', done => {
-    fetchDeck('JLPT2', 10).then(() => {
+    fetchDeck(2, 10).then(() => {
       expect(global.fetch).toHaveBeenCalledTimes(1);
       expect(global.fetch).toHaveBeenCalledWith(`${process.env.PUBLIC_URL}/decks/JLPT2-10.json`);
       done();
@@ -86,7 +86,7 @@ describe('should fetch json data', () => {
   });
 
   it('should fetch json data for JLPT level7-2', done => {
-    fetchDeck('JLPT7', 2).then(() => {
+    fetchDeck(7, 2).then(() => {
       expect(global.fetch).toHaveBeenCalledTimes(1);
       expect(global.fetch).toHaveBeenCalledWith(`${process.env.PUBLIC_URL}/decks/JLPT7-2.json`);
       global.fetch.mockClear();
@@ -95,12 +95,12 @@ describe('should fetch json data', () => {
   });
 });
 
-describe.only('retrieving grade data', () => {
+describe('retrieving grade data', () => {
   beforeAll(() => {
     const initialState = {
       grades: JSON.stringify({
-        [`JLPT3-1`]: '95',
-        [`JLPT3-2`]: '100'
+        [`JLPT3-1`]: { correct: 9.5, total: 10 },
+        [`JLPT3-2`]: { correct: 10, total: 10 }
       })
     };
     Object.defineProperty(window, 'localStorage', {
@@ -112,8 +112,7 @@ describe.only('retrieving grade data', () => {
     expect(gradeForGroup('JLPT3', 23)).toBe('');
   });
   it('should retrieve 95 from localStorage for group JLPT3-1', () => {
-    const initialStorage = { grades: JSON.stringify({ 'JLPT3-2': '100' }) };
-    expect(gradeForGroup('JLPT3', 1)).toBe('95');
+    expect(gradeForGroup('JLPT3', 1)).toBe('95.00');
   });
 
   it('should retrieve 100 from localStorage for group JLPT3-1', () => {

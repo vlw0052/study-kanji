@@ -18,7 +18,11 @@ function SelectionScreen(props) {
     if (selectedLevel) {
       return 'Select A Group';
     }
-    return ['Select a level', <small> Easiest to Hardest </small>];
+    return (
+      <React.Fragment>
+        Select a level <small> Easiest to Hardest </small>
+      </React.Fragment>
+    );
   };
   return (
     <div className='selection'>
